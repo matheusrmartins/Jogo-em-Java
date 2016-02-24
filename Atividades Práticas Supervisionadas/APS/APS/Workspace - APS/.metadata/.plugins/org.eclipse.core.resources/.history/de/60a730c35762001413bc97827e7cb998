@@ -1,0 +1,50 @@
+package PCT_APS;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextPane;
+import javax.swing.border.EmptyBorder;
+
+public class Pontuacao extends JFrame {
+
+	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Pontuacao frame = new Pontuacao();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Pontuacao() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		JTextPane txtpnNvelFcil = new JTextPane();
+		txtpnNvelFcil.setEditable(false);
+		txtpnNvelFcil.setBackground(new Color(0, 128, 0));
+		txtpnNvelFcil.setFont(new Font("Segoe UI", Font.BOLD, 18));
+		txtpnNvelFcil.setText("\u2022 N\u00EDvel F\u00E1cil: M\u00EDnimo de 13 pontos para ganhar.\r\n\r\n\u2022 N\u00EDvel M\u00E9dio: M\u00EDnimo de 18 pontos para ganhar.\r\n\r\n\u2022 N\u00EDvel Dif\u00EDcil: M\u00EDnimo de 23 pontos para ganhar.");
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 0));
+		setContentPane(contentPane);
+	}
+
+}

@@ -1,0 +1,125 @@
+package PCT_APS;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+
+import java.awt.Font;
+
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+
+import java.awt.Color;
+
+import javax.swing.JButton;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ItemListener;
+import java.io.IOException;
+import java.awt.Toolkit;
+import java.awt.Window.Type;
+
+import javax.swing.ComboBoxModel;
+import javax.swing.JOptionPane;
+import javax.swing.JToggleButton;
+import javax.swing.JList;
+import javax.swing.AbstractListModel;
+import javax.swing.JSlider;
+
+
+public class Opcoes extends JFrame {
+	
+	public static int a;
+	
+	public int nivel()
+	{
+		a = cbNivel.getSelectedIndex();
+		return a;
+	}
+
+	
+	private JPanel contentPane;
+
+	final static JComboBox cbNivel = new JComboBox();
+	public Opcoes() {
+		
+		setResizable(false);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Opcoes.class.getResource("/PCT_APS/Logos/logo.png")));
+		setTitle("Reciclando");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 879, 427);
+		contentPane = new JPanel();
+		contentPane.setBackground(new Color(154, 205, 50));
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		cbNivel.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		
+		
+
+		cbNivel.setModel(new DefaultComboBoxModel(new String[] {"F\u00E1cil", "M\u00E9dio", "D\u00EDficil"}));
+		cbNivel.setSelectedIndex(1);
+		cbNivel.setBounds(383, 67, 89, 23);
+		contentPane.add(cbNivel);
+		
+		
+		JLabel lblSelecioneONivel = new JLabel("Selecione o Nivel: ");
+		lblSelecioneONivel.setFont(new Font("Segoe UI", Font.BOLD, 13));
+		lblSelecioneONivel.setBounds(245, 69, 114, 14);
+		contentPane.add(lblSelecioneONivel);
+		
+
+		
+
+
+		JLabel lblJogabilidade = new JLabel("Dicas do jogo:");
+		lblJogabilidade.setForeground(Color.RED);
+		lblJogabilidade.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		lblJogabilidade.setBounds(88, 138, 95, 23);
+		contentPane.add(lblJogabilidade);
+			
+		
+		JButton btnJogar = new JButton("Come\u00E7ar");
+		btnJogar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Jogo frame;
+				
+				try {	
+					nivel();
+					frame = new Jogo();
+					frame.setVisible(true);
+					
+					} 
+				catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					}
+				dispose();
+
+			}
+		});
+		btnJogar.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		btnJogar.setBounds(271, 336, 89, 23);
+		contentPane.add(btnJogar);
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.setFont(new Font("Segoe UI", Font.BOLD, 12));
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new Menu().setVisible(true);  
+				dispose(); 
+			}
+		});
+		btnVoltar.setBounds(421, 336, 89, 23);
+		contentPane.add(btnVoltar);
+		
+	}
+	
+	
+}
+

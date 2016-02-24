@@ -1,0 +1,145 @@
+package PCT_TESTE;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+
+import java.awt.Font;
+
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+
+import java.awt.Color;
+
+import javax.swing.JButton;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ItemListener;
+import java.io.IOException;
+import java.awt.Toolkit;
+import java.awt.Window.Type;
+
+import javax.swing.JOptionPane;
+import javax.swing.JToggleButton;
+import javax.swing.JList;
+import javax.swing.AbstractListModel;
+import javax.swing.JSlider;
+
+
+public class Opcoes extends JFrame {
+	
+	public int a;
+
+	private JPanel contentPane;
+
+	public Opcoes() {
+		setResizable(false);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Opcoes.class.getResource("/PCT_TESTE/logo.png")));
+		setTitle("Reciclando");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 879, 427);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblSelecioneONivel = new JLabel("Selecione o Nivel: ");
+		lblSelecioneONivel.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblSelecioneONivel.setBounds(245, 69, 114, 14);
+		contentPane.add(lblSelecioneONivel);
+		
+
+		final JComboBox cbNivel = new JComboBox();
+		cbNivel.setModel(new DefaultComboBoxModel(new String[] {"F\u00E1cil", "M\u00E9dio", "D\u00EDficil"}));
+		cbNivel.setSelectedIndex(1);
+		cbNivel.setBounds(383, 67, 114, 20);
+		contentPane.add(cbNivel);
+		a = cbNivel.getSelectedIndex();
+
+		
+
+		JLabel lblJogabilidade = new JLabel("Dicas do jogo:");
+		lblJogabilidade.setForeground(Color.RED);
+		lblJogabilidade.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblJogabilidade.setBounds(88, 138, 96, 14);
+		contentPane.add(lblJogabilidade);
+		
+		JLabel lblVocPrecisaJogar = new JLabel("- Voc\u00EA precisa dizer para qual lata de lixo o respectivo lixo que aparecera dever\u00E1 ir.");
+		lblVocPrecisaJogar.setForeground(Color.RED);
+		lblVocPrecisaJogar.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblVocPrecisaJogar.setBounds(49, 163, 406, 14);
+		contentPane.add(lblVocPrecisaJogar);
+		
+		JLabel lblOJogo = new JLabel("- O jogo come\u00E7a com 20 segundos que v\u00E3o diminuindo gradativamente.");
+		lblOJogo.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblOJogo.setForeground(Color.RED);
+		lblOJogo.setBounds(49, 186, 349, 14);
+		contentPane.add(lblOJogo);
+		
+		JLabel lblACada = new JLabel("- A cada ponto marcado voc\u00EA ganha um bonus de 1 segundo, por\u00E9m se errar, perde 1 segundo.");
+		lblACada.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblACada.setForeground(Color.RED);
+		lblACada.setBounds(49, 211, 461, 14);
+		contentPane.add(lblACada);
+		
+		JLabel lblOJogo_1 = new JLabel("- O jogo possui 5 niveis e a cada nivel voc\u00EA tem mais lixos pela frente.");
+		lblOJogo_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblOJogo_1.setForeground(Color.RED);
+		lblOJogo_1.setBounds(49, 236, 349, 14);
+		contentPane.add(lblOJogo_1);
+		
+		JLabel lblSeusPontos = new JLabel("- Seus pontos ficar\u00E3o guardados em nossos sistemas para que voc\u00EA possa desafiar os seus amigos.");
+		lblSeusPontos.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblSeusPontos.setForeground(Color.RED);
+		lblSeusPontos.setBounds(49, 286, 491, 14);
+		contentPane.add(lblSeusPontos);
+		
+		JLabel lblQuantoMais = new JLabel("- Quanto mais pontos melhor!");
+		lblQuantoMais.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblQuantoMais.setForeground(Color.RED);
+		lblQuantoMais.setBounds(49, 261, 149, 14);
+		contentPane.add(lblQuantoMais);
+		
+		JLabel lblEnfimAgora = new JLabel("- Enfim, agora que voc\u00EA j\u00E1 sabe um pouco mais sobre esse incrivel game voc\u00EA est\u00E1 esperando o que para come\u00E7ar a jogar?");
+		lblEnfimAgora.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblEnfimAgora.setForeground(Color.RED);
+		lblEnfimAgora.setBounds(49, 311, 599, 14);
+		contentPane.add(lblEnfimAgora);
+		
+		
+		
+		JButton btnJogar = new JButton("Come\u00E7ar");
+		btnJogar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Jogo frame;
+				
+				try {
+					
+					frame = new Jogo();
+					frame.setVisible(true);
+					JOptionPane.showMessageDialog(null, a);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				dispose();
+				
+				
+			}
+		});
+		btnJogar.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnJogar.setBounds(309, 336, 102, 42);
+		contentPane.add(btnJogar);
+		
+		
+		
+		
+		
+	}
+}
+

@@ -1,0 +1,191 @@
+package PCT_TESTE;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JOptionPane;
+import javax.swing.JProgressBar;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.LayoutStyle.ComponentPlacement;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
+public class Teste extends JFrame {
+	
+	double i, j, k, l;
+
+	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Teste frame = new Teste();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 * @throws IOException 
+	 */
+	public Teste() throws IOException {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 587, 412);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		
+		final JProgressBar progressBar = new JProgressBar();
+		progressBar.setValue(100);
+		
+		FileReader arq = new FileReader("\teste.txt"); 
+		BufferedReader lerArq = new BufferedReader(arq);
+		String linha;
+		linha = lerArq.readLine(); 
+		JLabel lblPalavra = new JLabel("");
+		
+		lblPalavra.setText(linha);
+
+
+		final JButton btnPapel = new JButton("");
+		btnPapel.setEnabled(false);
+		btnPapel.setIcon(new ImageIcon(Teste.class.getResource("/PCT_TESTE/papel.jpg")));
+		btnPapel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				i = i + 10;
+			}
+		});
+		
+		final JButton btnPlastico = new JButton("");
+		btnPlastico.setEnabled(false);
+		btnPlastico.setIcon(new ImageIcon(Teste.class.getResource("/PCT_TESTE/plastico.jpg")));
+		btnPlastico.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				i = i -10;
+			}
+		});
+		
+		final JButton btnVidro = new JButton("");
+		btnVidro.setEnabled(false);
+		btnVidro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				i = i -10;
+			}
+		});
+		
+		final JButton btnBotao = new JButton("Iniciar");
+		btnBotao.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+				btnBotao.setVisible(false);
+				btnPapel.setEnabled(true);
+				btnPlastico.setEnabled(true);
+				btnVidro.setEnabled(true);
+
+				
+				new Thread(){
+				public void run(){
+					for (i = 100; i > -5; i--)
+					{
+						try{
+							sleep(100);
+							progressBar.setValue((int) i);
+							
+							if (i > 100)
+							{
+								i = 100;
+							}
+						
+							
+					
+						}
+						catch(InterruptedException erro){
+							
+						}
+						
+						double a;
+						
+						a = progressBar.getValue();
+						
+						if (a == 0)
+						{
+							JOptionPane.showMessageDialog(null, "Acabou!");
+						}
+					}
+				}
+				
+			}.start();
+			}});
+		
+	
+		
+		
+		btnVidro.setIcon(new ImageIcon(Teste.class.getResource("/PCT_TESTE/vidro.jpg")));
+		
+		
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(btnBotao)
+							.addGap(18)
+							.addComponent(progressBar, GroupLayout.PREFERRED_SIZE, 264, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(24)
+							.addComponent(btnPapel, GroupLayout.PREFERRED_SIZE, 105, GroupLayout.PREFERRED_SIZE)
+							.addGap(38)
+							.addComponent(btnPlastico, GroupLayout.PREFERRED_SIZE, 108, GroupLayout.PREFERRED_SIZE)
+							.addGap(37)
+							.addComponent(btnVidro, GroupLayout.PREFERRED_SIZE, 99, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(193)
+							.addComponent(lblPalavra)))
+					.addContainerGap(150, Short.MAX_VALUE))
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(progressBar, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnBotao))
+					.addGap(46)
+					.addComponent(lblPalavra)
+					.addGap(80)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(btnVidro, 0, 0, Short.MAX_VALUE)
+						.addComponent(btnPlastico, 0, 0, Short.MAX_VALUE)
+						.addComponent(btnPapel, GroupLayout.PREFERRED_SIZE, 148, Short.MAX_VALUE))
+					.addGap(32))
+		);
+		contentPane.setLayout(gl_contentPane);
+	}
+
+}

@@ -1,0 +1,33 @@
+package PCT_APS;
+
+import java.awt.EventQueue;
+
+import javax.swing.JInternalFrame;
+
+public class a extends JInternalFrame {
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					a frame = new a();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public a() {
+		setBounds(100, 100, 450, 300);
+
+	}
+
+}

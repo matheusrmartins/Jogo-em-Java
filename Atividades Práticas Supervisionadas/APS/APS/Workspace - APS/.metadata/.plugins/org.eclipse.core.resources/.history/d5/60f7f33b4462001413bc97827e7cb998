@@ -1,0 +1,113 @@
+package PCT_TESTE;
+
+import java.awt.BorderLayout;
+import java.io.IOException;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import java.awt.Color;
+
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+
+import java.awt.Font;
+
+import javax.swing.SwingConstants;
+import javax.swing.JButton;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.Window.Type;
+
+public class Menu extends JFrame {
+
+	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) throws IOException {
+	 
+
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Menu frame = new Menu();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Menu() {
+		setResizable(false);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Menu.class.getResource("/PCT_APS/logo.png")));
+		setTitle("Reciclando");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 885, 426);
+		contentPane = new JPanel();
+		contentPane.setForeground(Color.BLACK);
+		contentPane.setBackground(Color.WHITE);
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setDisplayedMnemonic('p');
+		lblNewLabel.setIcon(new ImageIcon(Menu.class.getResource("/PCT_APS/pendoleo.png")));
+		lblNewLabel.setBounds(10, -19, 159, 110);
+		contentPane.add(lblNewLabel);
+		
+		JLabel lblPendoleo = new JLabel("Pendoleo");
+		lblPendoleo.setForeground(Color.RED);
+		lblPendoleo.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblPendoleo.setBounds(10, 46, 62, 20);
+		contentPane.add(lblPendoleo);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(Menu.class.getResource("/PCT_APS/nomejogo.png")));
+		lblNewLabel_1.setBounds(324, 52, 208, 157);
+		lblNewLabel_1.setVisible(true);
+		contentPane.add(lblNewLabel_1);
+		
+		JButton btnIniciar = new JButton("Iniciar");
+		btnIniciar.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		btnIniciar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				new Opcoes().setVisible(true);  
+				dispose(); 
+				
+			}
+		});
+		btnIniciar.setForeground(Color.BLACK);
+		btnIniciar.setBounds(369, 211, 115, 49);
+		contentPane.add(btnIniciar);
+		
+		JButton btnSair = new JButton("Sair");
+		btnSair.setFont(new Font("Segoe UI", Font.BOLD, 14));
+		btnSair.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(0);
+			}
+		});
+		btnSair.setBounds(369, 271, 115, 49);
+		contentPane.add(btnSair);
+		
+		JLabel lblReciclarMenu = new JLabel("");
+		lblReciclarMenu.setIcon(new ImageIcon(Menu.class.getResource("/PCT_APS/reciclar.png")));
+		lblReciclarMenu.setBounds(199, -19, 510, 461);
+		contentPane.add(lblReciclarMenu);
+	}
+}

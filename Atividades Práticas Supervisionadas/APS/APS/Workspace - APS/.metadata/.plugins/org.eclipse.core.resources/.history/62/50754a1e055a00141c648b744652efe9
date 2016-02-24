@@ -1,0 +1,108 @@
+package PCT_TESTE;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JProgressBar;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class Classe_Teste extends JFrame {
+
+	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Classe_Teste frame = new Classe_Teste();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Classe_Teste() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		
+		final JProgressBar pbTempo = new JProgressBar();
+		pbTempo.setValue(100);
+		
+
+		for (int i = 0; i < 100; i++)
+		{
+			sleep(100);
+			pbTempo.setValue(pbTempo.getValue() - 1);
+		}
+		
+		
+		JButton btnLixo = new JButton("Lixo 1");
+		btnLixo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				pbTempo.setValue(pbTempo.getValue() + 5);
+			}
+		});
+		
+		JButton btnLixo_1 = new JButton("Lixo 2");
+		
+		JButton btnLixo_2 = new JButton("Lixo 3");
+		
+		JButton btnLixo_3 = new JButton("Lixo 4");
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(41)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(btnLixo)
+							.addGap(18)
+							.addComponent(btnLixo_1)
+							.addGap(18)
+							.addComponent(btnLixo_2)
+							.addGap(27)
+							.addComponent(btnLixo_3))
+						.addComponent(pbTempo, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(33, Short.MAX_VALUE))
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(pbTempo, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnLixo)
+						.addComponent(btnLixo_1)
+						.addComponent(btnLixo_2)
+						.addComponent(btnLixo_3))
+					.addGap(62))
+		);
+		contentPane.setLayout(gl_contentPane);
+	}
+
+	private void sleep(int i) {
+		// TODO Auto-generated method stub
+		
+	}
+}
